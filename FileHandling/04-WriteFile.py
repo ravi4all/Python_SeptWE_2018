@@ -1,0 +1,6 @@
+file = open('file_2.txt', 'w')
+
+data = 'hello this is file handling'
+file.write(data)
+
+file.close()

@@ -1,3 +1,5 @@
+import readWrite
+
 users = []
 
 def loginSuccess():
@@ -8,6 +10,18 @@ def loginSuccess():
     4. Delete Profile
     5. Logout
     """)
+
+    choice = input("Enter your choice : ")
+
+    operations = {
+        "1" : post,
+        "2" : viewProfile,
+        "3" : updateProfile,
+        "4" : deleteProfile,
+        "5" : logout
+    }
+
+    operations.get(choice)()
 
 def post():
     pass
@@ -21,7 +35,11 @@ def updateProfile():
 def deleteProfile():
     pass
 
+def logout():
+    pass
+
 def register():
+    data = readWrite.read_Data()
     name = input("Enter your name : ")
     flag = True
     while flag:
@@ -39,8 +57,29 @@ def register():
     for user in users:
         print(user)
 
+    readWrite.write_Data(users)
+
 def login():
-    pass
+    emailId = input("Enter emailID : ")
+    pwd = input("Enter password : ")
+
+    # for user in users:
+    #     if user['email'] == emailId and user['pwd'] == pwd:
+    #         print("Login Success")
+    #         break
+    # else:
+    #     print("Login Failed")
+
+    for user in users:
+        if user['email'] == emailId:
+            if user['pwd'] == pwd:
+                print("Login Success")
+                loginSuccess()
+                break
+            else:
+                print("Invalid Password")
+    else:
+        print("Login Failed")
 
 def home():
     while True:
